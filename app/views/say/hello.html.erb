@@ -1,0 +1,83 @@
+<!-- <p style="color: #256446; font-weight: bold;text-align: center;font-size: 30px;"> Hello World </p>
+<%=  2 + 2 %>
+<% names = ["Jhon", "Deo", "Smith"] %>
+
+<h3> List of Names (<%= names.size %>) </h3>
+<ul>
+<% for name in names %>
+<li> <%= name %> </li>
+<% end %>
+</ul> -->
+
+<h3> <%= @client.name %> </h3>
+<p> <%= @client.details %> </p>
+
+
+<h3> Total Clients -<%= @clients.size %> </h3>
+<ul>
+	<% for client in @clients %>
+	   <li> <%= client.details %> </li>
+	   <%end %>
+</ul>
+
+<table border="1" >
+<thead>
+	<tr> 
+	<th> Sl no</th>
+	<th> Name</th>
+	<th> Company </th>
+	<th> E-mail</th>
+	</tr>
+</thead>
+	<tbody>
+		<% @clients.each_with_index do |client,index| %>
+		<tr>
+		<td> <%= index +1 %> </td>
+		<td> <%= client.name %> </td>
+		<td> <%= client.company %> </td>
+		<td> <%= client.email %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<table border="1" >
+<thead style="color:#45862">
+	<tr> 
+	<th> Sl no</th>
+	<th> Name</th>
+	<th> Description </th>
+	<th> Start Date</th>
+	<th> Client</th>
+	<th> Client Name </th>
+	<th> E-Mail </th>
+	<th> Status</th>
+	<th> Tasks </th>
+	<th> ongoing </th>
+	<th> completed </th>
+
+	</tr>
+	<div class="container-fluid">
+</thead>
+	<tbody>
+		<% @projects.each_with_index do |project,index| %>
+		<tr>
+		<td> <%= index +1 %> </td>
+		<td> <%= project.name %> </td>
+		<td> <%= project.description %> </td>
+		<td> <%= project.start_date %></td>
+		<td> <%= project.client_id %> </td>
+		<td> <%= project.client.try(:name) %> </td>
+		<td>  </td>
+		<td> <%= project.status %> </td>
+		<td> <%= project.tasks.size %> </td>
+		<td> <%= project.tasks.where('is_completed = ?', false).size %> </td>
+		<td> <%= project.tasks.where('is_completed = ?', true).size %> </td>
+		</tr>
+		
+		
+		<% end %>
+	</tbody>
+</div>
+</table>
+
