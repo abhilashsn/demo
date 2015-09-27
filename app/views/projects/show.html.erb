@@ -1,0 +1,10 @@
+<h3> <%= @project.name %> </h3>
+<small> <%= link_to "edit", edit_project_path(@project) %>
+        <%= link_to "delete", project_path(@project), method: :delete, data: {confirm: "are u sure"}%>
+</small>
+<hr>
+   <strong> Description: </strong> <%= @project.description%><br/>
+   <strong> Project: </strong> <%= @project.start_date %><br/>
+   <strong> Client: </strong> <%= @project.client.name%><br/>
+  
+   

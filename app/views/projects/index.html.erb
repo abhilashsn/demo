@@ -1,0 +1,8 @@
+<h3>listing Projects</h3>
+
+<ul>
+	<% for project in @project %>
+	    <li> <%= link_to project.name, project_path(project) %></li>
+	<%end%>
+</ul>
+<%= link_to "Add Project", new_project_path %>

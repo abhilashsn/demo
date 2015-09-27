@@ -1,0 +1,33 @@
+
+
+
+<h3> Edit Client </h3>
+
+<%= form_for @client do |f|%>
+
+<% if @client.errors.any?%>
+<div class="error" style="color:red">
+<h4>form error </h4>
+<ul>
+<% for msg in @client.errors.full_messages %>
+<li><%= msg %></li>
+</div>
+<%end%>
+</ul>
+<%end%>
+
+<label>Name:</label><br/>
+<%= f.text_field :name%><br/>
+
+<label>company:</label><br/>
+<%= f.text_field :company%><br/>
+
+<label>Email:</label><br/>
+<%= f.email_field :email%><br/>
+
+
+<label>website:</label><br/>
+<%= f.text_field :website%><br/>
+
+<%= f.submit %>
+<%end%>

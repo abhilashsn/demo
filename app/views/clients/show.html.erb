@@ -1,4 +1,7 @@
 <h3> <%= @client.name %> </h3>
+<small> <%= link_to "edit", edit_client_path(@client.id) %>
+        <%= link_to "delete", client_path(@client.id), method: :delete, data: {confirm: "are u sure"}%>
+</small>
 <hr>
    <strong> Company: </strong> <%= @client.company%><br/>
    <strong> Email: </strong> <%= @client.email %><br/>
