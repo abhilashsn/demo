@@ -1,0 +1,13 @@
+<h3> <%= @client.name %> </h3>
+<hr>
+   <strong> Company: </strong> <%= @client.company%><br/>
+   <strong> Email: </strong> <%= @client.email %><br/>
+   <strong> Website: </strong> <%= @client.website%><br/>
+   <h3> Projects (* <%= @client.projects.size%> *) </h3>
+   <ul>
+	     <% for project in @client.projects %>
+		 <li> <%= project.name %></li>
+		 <%end%>
+   </ul>
+   
+   <%= link_to "List Clients", clients_path %>

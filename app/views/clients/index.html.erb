@@ -1,0 +1,16 @@
+<h3> listing all clients </h3>
+
+<% if @clients.empty? %>
+no clients found
+<%else%>
+<ul> 
+	<% for client in @clients%>
+	<li>
+		<%= client.name %>
+		<%= link_to "show", client_path(client.id)%>
+	</li>
+	<%end%>
+</ul>
+<%end%>
+<a href ="client/new">Add client  (HTML)</a> </br>
+<%= link_to "Add Client", new_client_path %>
