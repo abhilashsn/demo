@@ -1,33 +1,19 @@
+<h3>ADD CLIENTS</h3>
 
+<%= form_for @client do |f| %>
 
+<label style=color:orange>Name:</label></br>
+<%= f.text_field :name %></br>
 
-<h3> Add Client </h3>
+<label style=color:pink>Company:</label> </br>
+<%= f.text_field :company%></br>
 
-<%= form_for @client do |f|%>
+<label style=color:green>Email:</label></br>
+<%= f.email_field :email%></br>
 
-<% if @client.errors.any?%>
-<div class="error" style="color:red">
-<h4>form error </h4>
-<ul>
-<% for msg in @client.errors.full_messages %>
-<li><%= msg %></li>
-</div>
-<%end%>
-</ul>
-<%end%>
-
-<label>Name:</label><br/>
-<%= f.text_field :name%><br/>
-
-<label>company:</label><br/>
-<%= f.text_field :company%><br/>
-
-<label>Email:</label><br/>
-<%= f.email_field :email%><br/>
-
-
-<label>website:</label><br/>
-<%= f.text_field :website%><br/>
+<label style=color:lavender>Website:</label></br>
+<%= f.text_field :website%></br>
 
 <%= f.submit %>
+
 <%end%>

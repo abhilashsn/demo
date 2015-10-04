@@ -1,15 +1,17 @@
-<h3> listing all clients </h3>
+<h3 style="color:red"> LISTING ALL CLIENTS </h3>
 
 <% if @clients.empty? %>
-no clients found
+	no clients found in record
 <%else%>
-<ul> 
-	<% for client in @clients%>
-	<li>
+<ul>
+	<% for client in @clients %>
+	<li style="color:orange">
 		<%= client.name %>
 		<%= link_to "show", client_path(client.id)%>
 	</li>
 	<%end%>
 </ul>
 <%end%>
-<%= link_to "Add Client", new_client_path %>
+
+	 <%= link_to "Add Client", new_client_path %>
+

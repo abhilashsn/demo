@@ -1,12 +1,14 @@
 class ProjectsController < ApplicationController
+   before_filter :authenticate_user!  
   def index
-    @project = Project.all
+    @project = current_user.projects
   end
   def new
     @project = Project.new
   end
   def create
     @project = Project.new(project_params)
+    @project.user_id = current_user.id
     if @project.save
       redirect_to project_path(@project.id)
     else 
@@ -15,15 +17,19 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    begin
-    @project = Project.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-    redirect_to projects_path
+		begin
+    @client = current_user.clients.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_url, notice: "Record Does Not Exist"
   end
   end
     
   def edit 
-    @project = Project.find(params[:id])
+		begin
+    @client = current_user.clients.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to root_url, notice: "Record Does Not Exist"
+  end
   end
   
   def update 

@@ -1,6 +1,6 @@
 class Client < ActiveRecord::Base
 	has_many :projects
-
+  belongs_to :user
 	def details
 		"#{id} - #{name} - #{company} - #{email}"
 	end

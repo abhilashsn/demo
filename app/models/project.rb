@@ -2,6 +2,7 @@
 class Project < ActiveRecord::Base
 	before_create :generate_project_code
 	before_destroy :delete_all_tasks
+  belongs_to :user
 
 	belongs_to :client
 	has_many :tasks
