@@ -1,14 +1,14 @@
-<h3 style=color:red> <%= @client.name %> </h3>
+<h3 style=color:red> <%= @clients.name %> </h3>
 
-<%= link_to "edit", edit_client_path(@client.id)%>
-<%= link_to "delete", client_path(@client.id),method: :delete, data: {confirm: "are u sure"} %><br/><br/>
-<strong> Company: </strong> <%= @client.company %> <br/>
-<strong> Email: </strong> <%= @client.email %><br/>
-<strong> Website: </strong> <%= @client.website %><br/>
+<%= link_to "edit", edit_client_path(@clients.id)%>
+<%= link_to "delete", client_path(@clients.id),method: :delete, data: {confirm: "are u sure"} %><br/><br/>
+<strong> Company: </strong> <%= @clients.company %> <br/>
+<strong> Email: </strong> <%= @clients.email %><br/>
+<strong> Website: </strong> <%= @clients.website %><br/>
 
-<h3> Projects ("<%= @client.projects.size%>") <h3>
+<h3> Projects ("<%= @clients.projects.size%>") <h3>
 <ul>
-<% for project in @client.projects %>
+<% for project in @clients.projects %>
 <%= project.name %>
 <%end%>
 </ul>

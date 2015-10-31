@@ -18,7 +18,7 @@ class ProjectsController < ApplicationController
   
   def show
 		begin
-    @client = current_user.clients.find(params[:id])
+    @project = current_user.projects.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_url, notice: "Record Does Not Exist"
   end
@@ -26,7 +26,7 @@ class ProjectsController < ApplicationController
     
   def edit 
 		begin
-    @client = current_user.clients.find(params[:id])
+    @project = current_user.projects.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_url, notice: "Record Does Not Exist"
   end
