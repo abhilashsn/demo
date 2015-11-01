@@ -18,7 +18,7 @@ class ClientsController < ApplicationController
   
   def show
     begin
-    @clients = current_user.clients.find(params[:id])
+    @clients = current_user.admin ? Client.find(params[:id]) : current_user.clients.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to root_url, notice: "Record Does Not Exist"
   end

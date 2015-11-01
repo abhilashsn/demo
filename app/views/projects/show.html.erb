@@ -5,12 +5,40 @@ description: <%= @project.description %><br/>
 Start Date: <%= @project.start_date %><br/>
 Client : <%= @project.client.try(:name) %>
 
+<%= @project.start_date.to_s %>
+
+<% if !@project.tasks.empty? %>
+<% data = [] %>
+<% for task in @project.tasks %>
+	<%data.push([task.name,@project.start_date,task.due_date])%>
+	<%end%>
+	<% data.push(["Logo Design",@project.start_date + 2.days, @project.start_date + 10.days])%>
+	<%= timeline data %>
+	<% end %>
+
+
+	<%= geo_chart({"Russia" => 200, "Australia" => 250, "India" => 430}) %>
+
+
+
+
+
+
 <h3>Total Tasks <%= @project.tasks.size %></h3>
 
+
+<% overdue_tasks =@project.tasks.where('is_completed = ? AND due_date < ?', false, Date.today) %>
+<% incomplete_tasks = @project.tasks.where('is_completed = ? AND due_date >= ?', false, Date.today) %>
+<% completed_tasks = @project.tasks.where('is_completed = ?', true) %>
+
+<%= pie_chart({"Incomplete" => incomplete_tasks.size, "Overdue" => overdue_tasks.size, "Completed" => completed_tasks.size}) %>
+
+
 <div class="red" style="color:red">
+
 <h3>Overdue Tasks</h3>
 <ul>
-  <% for task in @project.tasks.where('is_completed = ? AND due_date < ?', false, Date.today) %>
+  <% for task in overdue_tasks %>
     <li><%= task.details %></li>
   <% end %>
 </ul>
@@ -18,14 +46,14 @@ Client : <%= @project.client.try(:name) %>
 
 <h3>Incomplete Tasks</h3>
 <ul>
-  <% for task in @project.tasks.where('is_completed = ? AND due_date >= ?', false, Date.today) %>
+  <% for task in incomplete_tasks %>
     <li><%= task.details %></li>
   <% end %>
 </ul>
 
 <h3>Completed Tasks</h3>
 <ul>
-  <% for task in @project.tasks.where('is_completed = ?', true) %>
+  <% for task in completed_tasks %>
   <li><%= task.name %> <%= task.due_date.strftime("%A, %d %B %Y") %></li>
   <% end %>
 </ul>

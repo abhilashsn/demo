@@ -1,7 +1,19 @@
 <h3> Add Project </h3>
 <%= form_for @project do |f|%>
+<% if @project.errors.any?%>
+<div class='error' style="color:red">
+	<ul>
+		<% for msg in @project.errors.full_messages %>
+		<li><%= msg %> </li>
+		<%end%>
+	</ul>
+</div> 
+<%end%>
+
+
 <label>Client</label><br/>
-<%= f.collection_select :client_id, current_user.clients, :id, :name, prompt: "Select Client"%><br/>
+<% clients = current_user.admin? ? Client.all : current_user.clients %>
+<%= f.collection_select :client_id, clients, :id, :name, prompt: "Select Client"%><br/>
 <%# f.collection_select :attribute, DataSource, PrimaryKey, DisplayValue, options%>
 <label>Name</label>
 <%=f.text_field :name%>

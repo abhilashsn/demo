@@ -12,3 +12,28 @@
 <%= project.name %>
 <%end%>
 </ul>
+<h3> Add Project</h3>
+<%= form_for([@client, Project.new]) do |f| %>
+
+<h3>ADD CLIENTS</h3>
+
+<%= form_for @client do |f| %>
+
+<label style=color:orange>Name:</label></br>
+<%= f.text_field :name %></br>
+
+<label style=color:pink>Company:</label> </br>
+<%= f.text_field :company%></br>
+
+<label style=color:green>Email:</label></br>
+<%= f.email_field :email%></br>
+
+<label style=color:lavender>Website:</label></br>
+<%= f.text_field :website%></br>
+
+<%= f.submit %>
+
+<%end%>
+
+
+

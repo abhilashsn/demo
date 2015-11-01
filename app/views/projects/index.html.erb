@@ -1,8 +1,36 @@
-<h3>listing Projects</h3>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Sl No</th>
+            <th>Name</th>
+            <% if current_user.admin? %>
+            <th> Client </th>
+            <%end%>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Start Date</th>
+            <th>Client Name</th>
+            <th>Task Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @projects.each_with_index do |project, index|%>
+        <tr>
+            <td><%= index + 1 %></td>
+            <td><%=  link_to project.name, project_path(project) %></td>
+            <% if current_user.admin? %>
+            <td> <%= link_to project.client.try(:name), client_path(project.client_id)%> 
+            <%end%>	
+            <td style="color:red"><%= project.description %></td>
+            <td style="color:blue"><%= project.status %></td>
+            <td><%= project.start_date %></td>
+            <td><%= project.client.try(:name)%></td>
+            <td><%= project.tasks.size %></td>
+        </tr>
+        <% end %>
+    </tbody>
+    
+</table>
 
-<ul>
-	<% for project in @project %>
-	    <li> <%= link_to project.name, project_path(project) %></li>
-	<%end%>
-</ul>
-<%= link_to "Add Project", new_project_path %>
+
+<%= link_to "new project", new_project_path %>

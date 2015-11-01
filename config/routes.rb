@@ -4,7 +4,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   get 'say/hello'
-  resources :clients
+  
+  resources :clients do 
+    resources :projects
+  end
   resources :projects
   resources :categories
   resources :tasks
